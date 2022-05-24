@@ -1,0 +1,45 @@
+body {
+    overflow: hidden;
+}
+
+header {
+    margin-top: 40px;
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+    width: 268px;
+    height: 93px;
+}
+
+.search {
+    text-align: center;
+}
+
+.search_input {
+    position: relative;
+}
+
+#searchInput {
+    margin: 20px 50px;
+    width: 95%;
+    height: 69px;
+    border-radius: 5px;
+    padding-left: 20px;
+    background: #e7e7e7;
+    border: none;
+}
+
+.svg-inline--fa.fa-w-16 {
+    position: absolute;
+    top: 40px;
+    right: 70px;
+    width: 32.06px;
+    height: 32.06px;
+}
+
+.search_tag .btn {
+    width: 170px;
+    height: 69px;
+}
