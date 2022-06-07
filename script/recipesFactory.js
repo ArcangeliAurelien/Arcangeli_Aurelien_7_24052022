@@ -10,10 +10,7 @@ export function recipesFactory(data) {
         <a href="..." class="imageCard"></a>
         <div class="info">
             <p class="name">${name}</p>
-            <div>
-                <i class="far fa-clock"></i>
-                <p>${time}mm</p>
-            </div>
+            <p><i class="far fa-clock"></i>${time}mm</p>
             <div>${listIng}</div>
             <div class="description">${description}</div>
         </div>`

@@ -61,10 +61,5 @@ export function filterRecipes(recipes) {
         list3.classList.add("active")
     })
 
-    // if (list1 === "active") {
-    //     window.addEventListener("click", () => {
-    //         list1.style.display = "none"
-    //         list1.classList.remove("active")
-    //     })
-    // }
+    
 }

@@ -35,11 +35,11 @@ header {
     padding-left: 20px;
 }
 
-.svg-inline--fa.fa-w-16 {
+.fa-search {
     position: absolute;
     top: 20px;
     right: 20px;
-    width: 32.06px;
+    width: 2em;
     height: 32.06px;
 }
 
