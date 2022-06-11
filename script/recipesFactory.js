@@ -1,5 +1,5 @@
-export function recipesFactory(data) {
-    const { id, name, servings, ingredients, time, description, appliance, ustensils } = data
+export function recipesFactory(recipes) {
+    const { name, ingredients, time, description } = recipes
 
     const listIng = ingredients.map(i => i.ingredient)
     
@@ -18,6 +18,6 @@ export function recipesFactory(data) {
         return (article)
     }
     
-    return { name, ingredients, time, description,listIng, getRecipeCardDOM }
+    return { name, ingredients, time, description, listIng, getRecipeCardDOM }
 
 }

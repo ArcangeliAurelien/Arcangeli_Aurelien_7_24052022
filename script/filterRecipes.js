@@ -1,4 +1,6 @@
-export function filterRecipes(recipes) {
+import { recipesFactory } from "./recipesFactory.js";
+
+export function buttonFilterRecipes(recipes) {
     let array1 = []
     let array2 = []
     let array3 = []
@@ -50,16 +52,47 @@ export function filterRecipes(recipes) {
 
     dropdown1.addEventListener("click", () => {
         list1.style.display = "block"
-        list1.classList.add("active")
     })
     dropdown2.addEventListener("click", () => {
         list2.style.display = "block"
-        list2.classList.add("active")
     })
     dropdown3.addEventListener("click", () => {
         list3.style.display = "block"
-        list3.classList.add("active")
     })
 
+    const chevronUp2 = document.querySelector(".up2")
+
+    if (list2 === "active") {
+        chevronUp2.addEventListener("click", () => {
+            console.log("clic");
+        })
+    }
+
+}
+
+export function filterRecipes(recipes) {
+    const searchInput = document.getElementById("searchInput")
     
+    searchInput.addEventListener("keyup", () => {
+        const input = searchInput.value
+
+        const result = recipes.filter(item => item.name.toLocaleLowerCase().includes(input.toLocaleLowerCase()))
+        let suggestion = ""
+
+        result.forEach(resultItem => {
+            suggestion += `
+                <a href="..." class="imageCard"></a>
+                <div class="info">
+                    <p class="name">${resultItem.name}</p>
+                    <p><i class="far fa-clock"></i>${resultItem.time}mm</p>
+                    <div>${resultItem.ingredients}</div>
+                    <div class="description">${resultItem.description}</div>
+                </div>
+            `
+        })
+        //recipesFactory(result)
+        //console.log(result);
+        const recettesSection = document.querySelector(".recettesSection")
+        recettesSection.innerHTML = suggestion
+    })
 }

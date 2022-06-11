@@ -1,5 +1,5 @@
-import { filterRecipes } from './filterRecipes.js'
 import { recipesFactory } from './recipesFactory.js'
+import { buttonFilterRecipes, filterRecipes } from './filterRecipes.js'
 
 async function getRecipes() {
     const response = await fetch("./data/recipes.json")
@@ -21,6 +21,7 @@ async function displayData(recipes) {
 async function init() {
     const { recipes } = await getRecipes()
     displayData(recipes)
+    buttonFilterRecipes(recipes)
     filterRecipes(recipes)
 }
 
