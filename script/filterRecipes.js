@@ -1,3 +1,5 @@
+import { recetteCard } from "./recipesFactory.js";
+
 export function buttonFilterRecipes(recipes) {
 
                 /* CREER LA LISTE DES DROPDOWN */
@@ -35,6 +37,8 @@ export function buttonFilterRecipes(recipes) {
     const app = document.getElementById("app")
     const ust = document.getElementById("ust")
 
+    // CREER LISTE DES DIFFERENTS TAGS
+
     arrayIng.forEach(item => {
         let li = document.createElement("li")
         li.innerHTML = item
@@ -51,6 +55,8 @@ export function buttonFilterRecipes(recipes) {
         ust.appendChild(li)
     })
 
+    // OUVRIR DROPDOWN TAG
+
     const dropdown = document.querySelectorAll(".dropdown")
 
     dropdown.forEach(btn => {
@@ -66,6 +72,8 @@ export function buttonFilterRecipes(recipes) {
             }
         })
     })
+    
+    // FERMER DROPDOWN TAG
 
     const up = document.querySelectorAll(".up")
     const up1 = document.querySelector(".up1")
@@ -95,7 +103,6 @@ export function buttonFilterRecipes(recipes) {
 export function filtreTag(recipes) {
     const li = document.querySelectorAll("li")
     const tag_container = document.querySelector(".tag_container")
-    let suggestion = ""
 
     let array1 = []
     let array2 = []
@@ -127,42 +134,7 @@ export function filtreTag(recipes) {
 
                 const result = recipes.filter(recipe => (recipe.ingredients).map(i => i.ingredient).includes(item.textContent))
                 //console.log(result);
-                result.forEach(resultItem => {
-                    //console.log(resultItem);
-
-                    const Ingr = resultItem.ingredients
-                    const listIng = Ingr.map((el) => {
-                        const { ingredient } = el
-                        const quantityRaw = el.quantity
-                        const unitRaw = el.unit
-                        const quantityArray = []
-                        const unitArray = []
-                        quantityArray.push(quantityRaw)
-                        unitArray.push(unitRaw)
-                        const quantity = quantityArray.filter((ele) => ele !== undefined)
-                        const unit = unitArray.filter((item => item !== undefined))
-
-                        return `<li><b>${ingredient}: </b>` + `<span>${quantity} </span>` + `<span>${unit}</span></li>`
-
-                    }).join("")
-
-                    suggestion += 
-                        `<article class="cardRecipe">
-                            <a href="..." class="imageCard"></a>
-                            <div class="info">
-                                <div class="line1">
-                                    <p class="name">${resultItem.name}</p>
-                                    <p><i class="far fa-clock"></i>${resultItem.time}mm</p>
-                                </div>
-                                <div class="line2">
-                                    <div class="ing"><ul>${listIng}</ul></div>
-                                    <div class="description">${resultItem.description}</div>
-                                </div>
-                            </div>
-                        </article>`
-                    
-                    return document.querySelector(".recettesSection").innerHTML = suggestion
-                })
+                return recetteCard(result)
 
             } else if (arrayApp.includes(item.textContent)) {
                 const tag = `<div class="tag2" id="tag">${item.textContent} <span data-role="close">&#10006;</span></div>`
@@ -170,84 +142,15 @@ export function filtreTag(recipes) {
 
                 const result = recipes.filter(recipe => recipe.appliance.includes(item.textContent))
                 //console.log(result);
-                result.forEach(resultItem => {
-                    //console.log(resultItem);
+                return recetteCard(result)
 
-                    const Ingr = resultItem.ingredients
-                    const listIng = Ingr.map((el) => {
-                        const { ingredient } = el
-                        const quantityRaw = el.quantity
-                        const unitRaw = el.unit
-                        const quantityArray = []
-                        const unitArray = []
-                        quantityArray.push(quantityRaw)
-                        unitArray.push(unitRaw)
-                        const quantity = quantityArray.filter((ele) => ele !== undefined)
-                        const unit = unitArray.filter((item => item !== undefined))
-
-                        return `<li><b>${ingredient}: </b>` + `<span>${quantity} </span>` + `<span>${unit}</span></li>`
-
-                    }).join("")
-
-                    suggestion +=
-                        `<article class="cardRecipe">
-                            <a href="..." class="imageCard"></a>
-                            <div class="info">
-                                <div class="line1">
-                                    <p class="name">${resultItem.name}</p>
-                                    <p><i class="far fa-clock"></i>${resultItem.time}mm</p>
-                                </div>
-                                <div class="line2">
-                                    <div class="ing"><ul>${listIng}</ul></div>
-                                    <div class="description">${resultItem.description}</div>
-                                </div>
-                            </div>
-                        </article>`
-
-                    return document.querySelector(".recettesSection").innerHTML = suggestion
-                })
             } else if (arrayUst.includes(item.textContent)) {
                 const tag = `<div class="tag3" id="tag">${item.textContent} <span data-role="close">&#10006;</span></div>`
                 tag_container.insertAdjacentHTML("beforeend", tag)
                 
                 const result = recipes.filter(recipe => (recipe.ustensils).includes(item.textContent))
                 //console.log(result);
-                result.forEach(resultItem => {
-                    //console.log(resultItem);
-
-                    const Ingr = resultItem.ingredients
-                    const listIng = Ingr.map((el) => {
-                        const { ingredient } = el
-                        const quantityRaw = el.quantity
-                        const unitRaw = el.unit
-                        const quantityArray = []
-                        const unitArray = []
-                        quantityArray.push(quantityRaw)
-                        unitArray.push(unitRaw)
-                        const quantity = quantityArray.filter((ele) => ele !== undefined)
-                        const unit = unitArray.filter((item => item !== undefined))
-
-                        return `<li><b>${ingredient}: </b>` + `<span>${quantity} </span>` + `<span>${unit}</span></li>`
-
-                    }).join("")
-
-                    suggestion +=
-                        `<article class="cardRecipe">
-                            <a href="..." class="imageCard"></a>
-                            <div class="info">
-                                <div class="line1">
-                                    <p class="name">${resultItem.name}</p>
-                                    <p><i class="far fa-clock"></i>${resultItem.time}mm</p>
-                                </div>
-                                <div class="line2">
-                                    <div class="ing"><ul>${listIng}</ul></div>
-                                    <div class="description">${resultItem.description}</div>
-                                </div>
-                            </div>
-                        </article>`
-
-                    return document.querySelector(".recettesSection").innerHTML = suggestion
-                })
+                return recetteCard(result)
             }
             
             
@@ -279,14 +182,14 @@ export function filterRecipesInput(recipes) {
     const recettesSection = document.querySelector(".recettesSection")
     let arrIng = []
 
+    recipes.forEach(element => {
+        const ingredients = element.ingredients
+        ingredients.forEach(el1 => arrIng.push(el1.ingredient))
+    })
+
     searchInput.addEventListener("input", () => {
         const input = searchInput.value
-
-        recipes.forEach(element => {
-            const ingredients = element.ingredients
-            ingredients.forEach(el1 => arrIng.push(el1.ingredient))
-        })
-
+        
         const result = recipes.filter(item => item.name.toLocaleLowerCase().includes(input.toLocaleLowerCase())
             || item.description.toLocaleLowerCase().includes(input.toLocaleLowerCase())
             || arrIng.includes(input.toLocaleLowerCase()))
@@ -329,11 +232,7 @@ export function filterRecipesInput(recipes) {
             
         })
 
-        //console.log(result);
-        if (input.length > 3) {
-            recettesSection.innerHTML = suggestion
-        }
-        if (input === "") {
+        if (input.length >= 3 || input === "") {
             recettesSection.innerHTML = suggestion
         }
         
