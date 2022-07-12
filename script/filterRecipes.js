@@ -55,6 +55,50 @@ export function buttonFilterRecipes(recipes) {
         ust.appendChild(li)
     })
 
+                /* FILTRER LES TAGS */
+    
+    const search = document.querySelectorAll("#search")
+    const inputIng = document.querySelector(".inputIng")
+    const inputApp = document.querySelector(".inputApp")
+    const inputUst = document.querySelector(".inputUst")
+
+    let arrayItem = []
+
+    search.forEach(ele => {
+        ele.style.opacity = "1"
+        ele.style.fontWeight = "bold"
+        
+        ele.addEventListener("input", (event) => {
+            const searchTag = event.target.value
+            
+            if (event.target === inputIng) {
+                const itemFilter = arrayIng.filter(item => item.toLocaleLowerCase().includes(searchTag.toLocaleLowerCase()))
+                const listTag = itemFilter.map(item => `<li>${item}</li>`).join("")
+
+                ing.innerHTML = listTag
+                filtreTag(recipes)
+
+            } else if(event.target === inputApp) {
+                const itemFilter = arrayApp.filter(item => item.toLocaleLowerCase().includes(searchTag.toLocaleLowerCase()))
+                const listTag = itemFilter.map(item => `<li>${item}</li>`).join("")
+                
+                app.innerHTML = listTag
+                filtreTag(recipes)
+
+            } else if (event.target === inputUst) {
+                const itemFilter = arrayUst.filter(item => item.toLocaleLowerCase().includes(searchTag.toLocaleLowerCase()))
+                const listTag = itemFilter.map(item => `<li>${item}</li>`).join("")
+
+                ust.innerHTML = listTag
+                filtreTag(recipes)
+
+            }
+            
+        })
+        
+    })
+    
+
     // OUVRIR DROPDOWN TAG
 
     const dropdown = document.querySelectorAll(".dropdown")
@@ -126,6 +170,8 @@ export function filtreTag(recipes) {
     const arrayApp = array3.filter((ele3, pos) => array3.indexOf(ele3) === pos)
     //console.log(arrayApp);
 
+    let arrayResult = []
+
     li.forEach(item => {
         item.addEventListener("click", () => {
             if (arrayIng.includes(item.textContent)) {
@@ -133,28 +179,41 @@ export function filtreTag(recipes) {
                 tag_container.insertAdjacentHTML("beforeend", tag)
 
                 const result = recipes.filter(recipe => (recipe.ingredients).map(i => i.ingredient).includes(item.textContent))
-                //console.log(result);
-                return recetteCard(result)
+                result.forEach(i => arrayResult.push(i))
+                
+                let newArrayResult = [...new Set(arrayResult)]
+                console.log(newArrayResult);
+
+                return recetteCard(newArrayResult)
 
             } else if (arrayApp.includes(item.textContent)) {
                 const tag = `<div class="tag2" id="tag">${item.textContent} <span data-role="close">&#10006;</span></div>`
                 tag_container.insertAdjacentHTML("beforeend", tag)
-
+                
                 const result = recipes.filter(recipe => recipe.appliance.includes(item.textContent))
-                //console.log(result);
-                return recetteCard(result)
+                result.forEach(j => arrayResult.push(j))
+                
+                let newArrayResult = [...new Set(arrayResult)]
+                console.log(newArrayResult)
+
+                return recetteCard(newArrayResult)
 
             } else if (arrayUst.includes(item.textContent)) {
                 const tag = `<div class="tag3" id="tag">${item.textContent} <span data-role="close">&#10006;</span></div>`
                 tag_container.insertAdjacentHTML("beforeend", tag)
                 
                 const result = recipes.filter(recipe => (recipe.ustensils).includes(item.textContent))
-                //console.log(result);
-                return recetteCard(result)
+                result.forEach(k => arrayResult.push(k))
+                
+                let newArrayResult = [...new Set(arrayResult)]
+                console.log(newArrayResult);
+
+                return recetteCard(newArrayResult)
+
             }
             
-            
         })
+
     })
 
     tag_container.addEventListener("click", (event) => {
@@ -165,10 +224,6 @@ export function filtreTag(recipes) {
             
         }
     })
-
-    if (tag_container.innerHTML) {
-        
-    }
 
 }
 
