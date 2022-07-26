@@ -61,9 +61,7 @@ export function buttonFilterRecipes(recipes) {
     const inputIng = document.querySelector(".inputIng")
     const inputApp = document.querySelector(".inputApp")
     const inputUst = document.querySelector(".inputUst")
-
-    let arrayItem = []
-
+    
     search.forEach(ele => {
         ele.style.opacity = "1"
         ele.style.fontWeight = "bold"
@@ -74,26 +72,28 @@ export function buttonFilterRecipes(recipes) {
             if (event.target === inputIng) {
                 const itemFilter = arrayIng.filter(item => item.toLocaleLowerCase().includes(searchTag.toLocaleLowerCase()))
                 const listTag = itemFilter.map(item => `<li>${item}</li>`).join("")
-
+                
                 ing.innerHTML = listTag
-                filtreTag(recipes)
+                
 
             } else if(event.target === inputApp) {
                 const itemFilter = arrayApp.filter(item => item.toLocaleLowerCase().includes(searchTag.toLocaleLowerCase()))
                 const listTag = itemFilter.map(item => `<li>${item}</li>`).join("")
                 
                 app.innerHTML = listTag
-                filtreTag(recipes)
+                
 
             } else if (event.target === inputUst) {
                 const itemFilter = arrayUst.filter(item => item.toLocaleLowerCase().includes(searchTag.toLocaleLowerCase()))
                 const listTag = itemFilter.map(item => `<li>${item}</li>`).join("")
 
                 ust.innerHTML = listTag
-                filtreTag(recipes)
+                
 
             }
             
+            filtreTag(recipes)
+
         })
         
     })
@@ -107,6 +107,7 @@ export function buttonFilterRecipes(recipes) {
         btn.addEventListener("click", (event) => {
             if (event.target === dropdown1) {
                 list1.style.display = "block"
+                
             }
             if (event.target === dropdown2) {
                 list2.style.display = "block"
@@ -164,13 +165,14 @@ export function filtreTag(recipes) {
     });
 
     const arrayIng = array1.filter((ele1, pos) => array1.indexOf(ele1) === pos)
-    //console.log(arrayIng);
+    // console.log(arrayIng);
     const arrayUst = array2.filter((ele2, pos) => array2.indexOf(ele2) === pos)
-    //console.log(arrayUst);
+    // console.log(arrayUst);
     const arrayApp = array3.filter((ele3, pos) => array3.indexOf(ele3) === pos)
-    //console.log(arrayApp);
+    // console.log(arrayApp);
 
     let arrayResult = []
+    let arrayItem = []
 
     li.forEach(item => {
         item.addEventListener("click", () => {
@@ -178,51 +180,95 @@ export function filtreTag(recipes) {
                 const tag = `<div class="tag1" id="tag">${item.textContent} <span data-role="close">&#10006;</span></div>`
                 tag_container.insertAdjacentHTML("beforeend", tag)
 
+                arrayItem.push(item.textContent)
+                //console.log(arrayItem);
+
                 const result = recipes.filter(recipe => (recipe.ingredients).map(i => i.ingredient).includes(item.textContent))
+                //console.log(result);
                 result.forEach(i => arrayResult.push(i))
                 
                 let newArrayResult = [...new Set(arrayResult)]
-                console.log(newArrayResult);
+                //console.log(newArrayResult);
+                let duplicates = [...arrayResult]
+                //console.log(duplicates);
+                newArrayResult.forEach((item) => {
+                    const i = duplicates.indexOf(item)
+                    duplicates = duplicates.slice(0, i)
+                        .concat(duplicates.slice(i + 1, duplicates.length))
+                })
+                let newResult = [... new Set(duplicates)]
+                //console.log(newResult);
+                //console.log(duplicates);
 
-                return recetteCard(newArrayResult)
+                return recetteCard(newResult)
+                
 
             } else if (arrayApp.includes(item.textContent)) {
                 const tag = `<div class="tag2" id="tag">${item.textContent} <span data-role="close">&#10006;</span></div>`
                 tag_container.insertAdjacentHTML("beforeend", tag)
+
+                arrayItem.push(item.textContent)
+                //console.log(arrayItem);
                 
-                const result = recipes.filter(recipe => recipe.appliance.includes(item.textContent))
+                const result = recipes.filter(recipe => (recipe.appliance).includes(item.textContent))
+                //console.log(result);
                 result.forEach(j => arrayResult.push(j))
                 
                 let newArrayResult = [...new Set(arrayResult)]
-                console.log(newArrayResult)
+                //console.log(newArrayResult);
+                let duplicates = [...arrayResult]
+                //console.log(duplicates);
+                newArrayResult.forEach((item) => {
+                    const i = duplicates.indexOf(item)
+                    duplicates = duplicates.slice(0, i)
+                        .concat(duplicates.slice(i + 1, duplicates.length))
+                })
+                let newResult = [... new Set(duplicates)]
+                //console.log(newResult);
+                //console.log(duplicates);
 
-                return recetteCard(newArrayResult)
+                return recetteCard(newResult)
+                
 
             } else if (arrayUst.includes(item.textContent)) {
                 const tag = `<div class="tag3" id="tag">${item.textContent} <span data-role="close">&#10006;</span></div>`
                 tag_container.insertAdjacentHTML("beforeend", tag)
+
+                arrayItem.push(item.textContent)
+                //console.log(arrayItem);
                 
                 const result = recipes.filter(recipe => (recipe.ustensils).includes(item.textContent))
+                //console.log(result);
                 result.forEach(k => arrayResult.push(k))
-                
+
                 let newArrayResult = [...new Set(arrayResult)]
-                console.log(newArrayResult);
+                //console.log(newArrayResult);
+                let duplicates = [...arrayResult]
+                //console.log(duplicates);
+                newArrayResult.forEach((item) => {
+                    const i = duplicates.indexOf(item)
+                    duplicates = duplicates.slice(0, i)
+                    .concat(duplicates.slice(i + 1, duplicates.length))
+                })
+                let newResult = [... new Set(duplicates)]
+                //console.log(newResult);
+                //console.log(duplicates);
 
-                return recetteCard(newArrayResult)
-
-            }
+                return recetteCard(newResult)
+                
+            } 
             
         })
-
+        
     })
 
     tag_container.addEventListener("click", (event) => {
         if (event.target !== event.currentTarget) {
             if (event.target.dataset.role === "close") {
                 event.target.parentNode.remove()
-            }
-            
+            }            
         }
+        
     })
 
 }

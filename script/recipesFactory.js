@@ -24,7 +24,7 @@ export function recipesFactory(recipes) {
             <div class="info">
                 <div class="line1">
                     <p class="name">${name}</p>
-                    <p><i class="far fa-clock"></i>${time}mm</p>
+                    <p><i class="far fa-clock"></i> ${time}mm</p>
                 </div>
                 <div class="line2">
                     <div class="ing"><ul>${listIng}</ul></div>
@@ -68,7 +68,7 @@ export function recetteCard(result) {
                             <div class="info">
                                 <div class="line1">
                                     <p class="name">${resultItem.name}</p>
-                                    <p><i class="far fa-clock"></i>${resultItem.time}mm</p>
+                                    <p><i class="far fa-clock"></i> ${resultItem.time}mm</p>
                                 </div>
                                 <div class="line2">
                                     <div class="ing"><ul>${listIng}</ul></div>
