@@ -20,11 +20,11 @@
     </header>
     <main>
         <section class="search">
-            <form class="search_input" id="form">
+            <div class="search_input" id="form">
                 <input type="text" id="searchInput" placeholder="Rechercher une recette"
                     aria-label="Rechercher une recette" />
                 <i class="fas fa-search"></i>
-            </form>
+            </div>
         </section>
 
         <section class="search_tag">
@@ -34,7 +34,7 @@
             </div>
             
             <div class="button_tag">
-                <button class="dropdown btn ingredients" id="dropdown1">
+                <button class="dropdown btn ingredients" id="dropdown1" data-filter="ingredients">
                     <span>Ingrédients</span>
                     <div class="list list1 ingredients">
                         <div class="input-search">
@@ -43,10 +43,10 @@
                                 <i class="fas fa-chevron-up"></i>
                             </div>
                         </div>
-                        <ul class="dropdown-content" id="ing"></ul>
+                        <ul class="dropdown-ing-items" id="ing"></ul>
                     </div>
                 </button>
-                <button class="dropdown btn appareils" id="dropdown2">
+                <button class="dropdown btn appareils" id="dropdown2" data-filter="appliance">
                     <span>Appareils</span>
                     <div class="list list2 appareils">
                         <div class="input-search">
@@ -55,10 +55,10 @@
                                 <i class="fas fa-chevron-up"></i>
                             </div>
                         </div>
-                        <ul class="dropdown-content" id="app"></ul>
+                        <ul class="dropdown-app-items" id="app"></ul>
                     </div>
                 </button>
-                <button class="dropdown btn ustensiles" id="dropdown3">
+                <button class="dropdown btn ustensiles" id="dropdown3" data-filter="ustensils">
                     <span>Ustensiles</span>
                     <div class="list list3 ustensiles">
                         <div class="input-search">
@@ -67,7 +67,7 @@
                                 <i class="fas fa-chevron-up"></i>
                             </div>
                         </div>
-                        <ul class="dropdown-content" id="ust"></ul>
+                        <ul class="dropdown-ust-items" id="ust"></ul>
                     </div>
                 </button>
             </div>
@@ -78,7 +78,14 @@
     </main>
 
 
-    <script type="module" src="script/index.js"></script>
+    <script src="./data/recipes.js"></script>
+    <script src="./script/factories/RecipesFactory.js"></script>
+    <script src="./script/ingredientsFilter.js"></script>
+    <script src="./script/applianceFilter.js"></script>
+    <script src="./script/ustensilsFilter.js"></script>
+    <script src="./script/searchBar.js"></script>
+    <script src="./script/searchEngine.js"></script>
+    <script src="./script/pages/index.js"></script>
 
 </body>
 </html>
