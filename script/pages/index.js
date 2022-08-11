@@ -6,9 +6,9 @@ function init(data) {
     
     if (data.length === 0) {
         console.log("erreur");
-        // document.querySelector("recettesSection").innerHTML =
-        //     `<div>Aucune recette ne correspond à votre critère… vous pouvez
-        //     chercher «&nbsp;tarte aux pommes&nbsp;», «&nbsp;poisson&nbsp;», etc.</div>`;
+        document.querySelector("recettesSection").innerHTML =
+            `<div>Aucune recette ne correspond à votre critère… vous pouvez
+            chercher «&nbsp;tarte aux pommes&nbsp;», «&nbsp;poisson&nbsp;», etc.</div>`;
     }
 }
 
