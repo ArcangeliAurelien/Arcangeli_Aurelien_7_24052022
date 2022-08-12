@@ -15,6 +15,11 @@ function researchInput(datas) {
     return datas.filter(recipe => {
         return reciperToString(recipe).includes(value);
     });
+
+    // for (let i = 0; i < datas.length; i++) {
+    //     const recipes = datas[i];
+    //     console.log(recipes);
+    // }
 }
 
 function reciperToString(recipe) {
