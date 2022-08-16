@@ -22,7 +22,7 @@ ingSearch.addEventListener("keyup", function () {
     })
 })
 
-/* INTERACTION AVEC LA BARRE DE RECHERCHE DU BOUTON IAPPAREILS */
+/* INTERACTION AVEC LA BARRE DE RECHERCHE DU BOUTON APPAREILS */
 const appSearch = document.getElementById("searchApp")
 
 appSearch.addEventListener("keyup", function () {

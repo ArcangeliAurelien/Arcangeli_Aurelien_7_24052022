@@ -131,6 +131,7 @@ header {
     right: 20px;
     width: 20px;
     height: 20px;
+    color: #fff;
 }
 
 .input-search {
@@ -146,11 +147,17 @@ header {
 .list {
     display: none;
     position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 400px;
+    max-width: 600px;
     z-index: 1;
     border-radius: 5px;
+}
+
+.list2 {
+    left: 210px;
+}
+
+.list3 {
+    left: 380px;
 }
 
 .list input {
@@ -169,13 +176,13 @@ header {
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 10px;
     list-style-type: none;
+    color: #fff;
+    font-weight: bold;
     padding-left: 10px;
     padding-right: 10px;
-}
-
-#ing {
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    min-width: 800px;
+    cursor: pointer;
+    overflow: scroll;
+    max-height: 300px;
 }
 
 .ingredients {
