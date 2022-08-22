@@ -13,7 +13,6 @@ function researchInput(datas) {
     let datas_filter =[];
     if (value.length <= 2) return datas
     for (let i = 0; i < datas.length; i++){
-        console.log(datas[i])
         if (reciperToString(datas[i]).includes(value)) {
            
             datas_filter.push(datas[i])
@@ -22,9 +21,9 @@ function researchInput(datas) {
     }
     return datas_filter;
 
-//      return datas.filter(recipe => {
-//          return reciperToString(recipe).includes(value)
-//      })
+    // return datas.filter(recipe => {
+    //      return reciperToString(recipe).includes(value)
+    // })
 }
 
 function reciperToString(recipe) {

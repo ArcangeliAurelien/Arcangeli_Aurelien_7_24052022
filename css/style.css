@@ -264,3 +264,70 @@ header {
 .name {
     font-size: 18px;
 }
+
+/*-------------------------------- Responsive --------------------------------*/
+
+@media (min-width: 1530px) {
+    .recettesSection {
+        justify-content: center;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 1530px) {
+    .cardRecipe {
+        width: 100%;
+    }
+
+    .description {
+        width: 500px;
+    }
+}
+
+@media (min-width: 390px) and (max-width: 700px) {
+    .button_tag {
+        flex-direction: column;
+    }
+
+    .search {
+        margin-left: 20px;
+    }
+
+    .search_tag {
+        margin-left: 20px;
+    }
+
+    .search_tag .btn {
+        width: 95%;
+    }
+
+    .name {
+        width: 190px;
+    }
+
+    .list {
+        width: 92%;
+        left: 5%;
+    }
+
+    .list2 {
+        top: 393px;
+    }
+
+    .list3 {
+        top: 482px;
+    }
+
+    .recettesSection {
+        margin-left: 20px;
+        margin-right: 0;
+    }
+
+    .cardRecipe {
+        width: 95%;
+        height: 450px;
+    }
+
+    .line2 .up {
+        width: 120px;
+    }
+}
